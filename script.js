@@ -105,7 +105,7 @@ console.log(obj.city);
 */
 
 // Lecture: passing functions as arguments
-
+/*
 var years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
@@ -140,12 +140,49 @@ var maxHeartRate = arrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAges);
 console.log(maxHeartRate);
+*/
 
+// functions returning functions
 
+function interviewQuestion(job) {
+    if(job === 'designer') {
+        return function(name) {
+            console.log(name + ', can you please explain what UX design is?');
+        }
+    } else if(job === 'teacher') {
+        return function(name) {
+            console.log('What subject do you teach, ' + name + '?');
+        }
+    } else {
+        return function(name) {
+            console.log('Hello ' + name + ', what do you do?');
+        }
+    }
+}
 
+var teacherQuestion = interviewQuestion('teacher');
+var designerQuestion = interviewQuestion('designer');
 
+teacherQuestion('John');
+designerQuestion('Jane');
 
+function howDeep(abyss) {
+    console.log(abyss + ', one level deep');
+    return function level1(level1) {
+        console.log(level1 + ', two levels deep');
+        return function level2(level2) {
+            console.log(level2 + ', three levels deep');
+            return function level3(level3) {
+                console.log (level3 + ', four levels deep');
+                return function bottom(bottom) {
+                    console.log('you made it to the ' + bottom);
+                }
+            }
+        }
+    }
+}
 
+howDeep('wide open')('diving')('diving deeper')('deeper')('bottom');
 
 // console.log(1 + 2 + "3");
 
