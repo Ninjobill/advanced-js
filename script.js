@@ -39,7 +39,7 @@ console.log(mark.lastName);
 */
 
 // object.create
-
+/*
 var personProto = {
     calculateAge: function() {
         console.log(2016 - this.yearOfBirth);
@@ -59,11 +59,48 @@ var jane = Object.create(personProto,
 });
 
 console.log(john);
+*/
 
+// Primitive vs objects
 
+// primitives
+var a = 23;
+var b = a;
+a = 24;
+a;
+b;
 
+// objects
+var obj1 = {
+    name: 'john',
+    age: 26
+};
+var obj2 = obj1;
 
+obj1.age = 30;
+console.log(obj1.age);
+console.log(obj2.age);
 
+// obj1 and obj2 are pointing to same obj, so obj can be udpated and reflected in obj1 and obj2 right away.
+
+// Functions
+var age = 27;
+var obj = {
+    name: 'jonas',
+    city: 'lisbon'
+};
+
+function change(a, b) {
+    a = 30;
+    b.city = 'San Francisco';
+}
+
+// object change is reflected outside of funtion,
+// variable being a primitive does not take change outside of the function.
+change(age, obj);
+
+console.log(age);
+console.log(obj.city);
 
 
 
@@ -92,12 +129,6 @@ console.log(john);
 
 // console.log("i'm a lasagna hog".split('').reverse().join(''));
 
-
-// var foo = {n:1};
-// var bar = foo;
-// foo.x = foo = {n:2};
-
-// console.log(foo.x);
 
 // console.log('one');
 // setTimeout(function() {
