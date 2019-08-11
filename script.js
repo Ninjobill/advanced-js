@@ -236,6 +236,7 @@ jane('jane');
 jim('jim');
 */
 
+/*
 function interviewQuestion(job) {
     return function(name) {
         if(job === 'designer') {
@@ -247,6 +248,43 @@ function interviewQuestion(job) {
         }
     }
 }
+*/
+
+///////////////////////////
+// lecture : bine, call and apply
+
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function(style, timeOfDay) {
+        if ( style === 'formal' ) {
+            console.log('Good ' + timeOfDay + ', Ladies and gentleman! Im ' + this.name + ', im a ' + this.job + ' and im ' + this.age + ' years old.');
+        } else if ( style === 'friendly' ) {
+            console.log('Hey! whats up? Im ' + this.name + ', im a ' + this.job + ' and im ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+        } 
+    }
+};
+var emily = {
+    name: 'emily',
+    age: 35,
+    job: 'designer'
+};
+
+john.presentation('formal', 'morning');
+
+// call method helps borrow, first element is the this element.
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+// saves a preset for a function
+var johnFriendly = john.presentation.bind(john, 'friendly', 'morning');
+// johnFriendly('night');
+johnFriendly();
+
+
+
+
+
 
 // console.log(1 + 2 + "3");
 
