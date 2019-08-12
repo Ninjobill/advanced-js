@@ -203,7 +203,7 @@ game();
 // **********************
 // Closures
 // ***********************
-
+/*
 function retirement(retirementAge) {
     var a = ' years left until retirement.';
     return function(yearOfBirth) {
@@ -219,7 +219,7 @@ var retirementIceland = retirement(67);
 retirementUS(1990);
 retirementGermany(1990);
 retirementIceland(1990);
-
+*/
 /*
 function interviewQuestion(job) { 
     return function(name) {
@@ -251,8 +251,8 @@ function interviewQuestion(job) {
 */
 
 ///////////////////////////
-// lecture : bine, call and apply
-
+// lecture : bind, call and apply
+/*
 var john = {
     name: 'John',
     age: 26,
@@ -280,6 +280,109 @@ john.presentation.call(emily, 'friendly', 'afternoon');
 var johnFriendly = john.presentation.bind(john, 'friendly', 'morning');
 // johnFriendly('night');
 johnFriendly();
+*/
+
+
+// const Person = function(name, yearOfBirth, job) {
+//     this.name = name;
+//     this.yearOfBirth = yearOfBirth;
+//     this.job = job;
+//     this.calculateAge = function() {
+//         console.log(2016 - this.yearOfBirth);
+//     }
+// }
+
+(function() {
+
+    
+    function Question(question, answers, correctAnswer) {
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    };
+    
+    Question.prototype.displayQuestion = function() {
+        console.log(this.question);
+        for(var i = 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+
+    Question.prototype.checkAnswer = function(ans) {
+        if(ans == this.correctAnswer) {
+            console.log('*******************');        
+            console.log('Good job');
+            console.log('*******************');
+            score += 1;
+        } else {
+            console.log('*******************');
+            console.log('Sorry wrong answer');
+            console.log('*******************');
+        }
+    }
+    
+    var favoriteColor = new Question(
+        'What is my favorite color?',
+        [
+            'black',
+            'white',
+            'blue'
+        ],
+        0);
+        
+    var favoriteCar = new Question(
+        'What is my favorite car?',
+        [
+            'Focus',
+            'Maserati',
+            'Continental'
+        ],
+        1);
+            
+    var favoriteLanguage = new Question(
+        'What is my favorite Language?',
+        [
+            'Java',
+            'C#',
+            'Javascript'
+        ],
+        2);
+                
+               
+        var score = 0;
+        var user;
+        var randomQuestion;
+        var questionArray = [favoriteColor, favoriteCar, favoriteLanguage];
+        
+    function newQuestions() {
+        randomQuestion = Math.floor(Math.random() * questionArray.length);
+        questionArray[randomQuestion].displayQuestion();
+        console.log('Correct answer?');
+
+        console.log('Score: ' + score);
+        user = prompt('What is your answer? Type "exit" to exit');
+        
+        if(user !== 'exit') {
+            questionArray[randomQuestion].checkAnswer(parseInt(user));
+            newQuestions();
+        }
+    }
+
+    newQuestions();
+    
+
+                
+})();
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
 
 
 
